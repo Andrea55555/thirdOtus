@@ -10,21 +10,22 @@ with open("../../../3/thirdOtus/files/users.json", "r") as f:
 def read_users():
     for user in users:
         result.get('users').append({'name: ': user['name'], 'gender: ': user['gender'], 'address: ': user['address'],
-                                   'age: ': user['age'], 'book': []})
+                                    'age: ': user['age'], 'books': []})
 
 
 def read_books():
     books_read = []
     with open('../../../3/thirdOtus/files/books.csv', newline='') as f:
         for book_one in csv.DictReader(f):
-            books_read.append(book_one)
+            books_read.append(
+                {'title: ': book_one['Title'], 'author: ': book_one['Author'], 'pages: ': int(book_one['Pages']),
+                 'genre: ': book_one['Genre']})
     return books_read
 
 
 read_users()
 books = read_books()
 x = 0
-
 
 for i in range(0, len(books)):
     a = i
@@ -33,8 +34,7 @@ for i in range(0, len(books)):
             x += 1
         a = i - ((len(result.get('users'))) * x)
     u = result.get('users')[a]
-    u.get('book').append(books[i])
-
+    u.get('books').append(books[i])
 
 with open('../../../3/thirdOtus/code/data.json', 'w') as f:
     json.dump(result, f)
