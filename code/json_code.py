@@ -37,4 +37,4 @@ for i in range(0, len(books)):
     u.get('books').append(books[i])
 
 with open('../../../3/thirdOtus/code/data.json', 'w') as f:
-    json.dump(result, f)
+    json.dump(result['users'], f)
